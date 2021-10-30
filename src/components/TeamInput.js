@@ -1,11 +1,16 @@
-function Input() {
+function TeamInput({ teamImport, teamImportHandler, submitHandler }) {
 
   return (
-    <div>
-      <textarea placeholder="Paste Team"></textarea>
-      <button>Submit</button>
-    </div>
+    <section className="team-input">
+      <textarea 
+      value={teamImport}
+      placeholder="Paste Team"
+      onChange={teamImportHandler}
+      >
+      </textarea>
+      <button onClick={submitHandler}>Submit</button>
+    </section>
   );
 }
 
-export default Input;
+export default TeamInput;

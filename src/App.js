@@ -27,7 +27,7 @@ function App() {
       submitHandler={submitHandler}
       teamImport={teamImport}
       />
-      {team.map(poke => <PokemonCard pokemon={poke}/>)}
+      {team.map((poke, i) => <PokemonCard key={i} pokemon={poke}/>)}
     </div>
   );
 }

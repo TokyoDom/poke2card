@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-function PokemonCard({ pokemon }) {
-  const [typing, setTyping] = useState(pokemon.types);
+function PokemonCard({ pokemon, i, addTyping }) {
   const [t1, setT1] = useState("");
   const [t2, setT2] = useState("");
 
@@ -11,13 +10,15 @@ function PokemonCard({ pokemon }) {
     if (t2) types.push(t2.toLowerCase());
 
     if (types.length > 0) {
-      setTyping(types);
+      addTyping(i, types);
       setT1("");
-      setT2("");
+      setT2("");     
     }
   };
 
   const renderTyping = () => {
+    const typing = pokemon.types;
+
     if (typing.length === 0) {
       return (
         <>

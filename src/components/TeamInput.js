@@ -1,4 +1,4 @@
-function TeamInput({ teamImport, teamImportHandler, submitHandler }) {
+function TeamInput({ teamImport, teamImportHandler, submitHandler, getImages }) {
 
   return (
     <section className="team-input">
@@ -9,6 +9,7 @@ function TeamInput({ teamImport, teamImportHandler, submitHandler }) {
       >
       </textarea>
       <button onClick={submitHandler}>Submit</button>
+      <button onClick={getImages}>Download</button>
     </section>
   );
 }

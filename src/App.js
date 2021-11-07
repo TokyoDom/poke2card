@@ -13,10 +13,32 @@ function App() {
     setTeamImport(e.target.value);
   }
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     //look into directly from pokepaste link
     const parsedTeam = Koffing.parse(teamImport);
-    setTeam(parsedTeam.teams[0].pokemon)
+    const pokemon = parsedTeam.teams[0].pokemon;
+    
+    //get typings if possible 
+    const promises = [];
+    pokemon.forEach(poke => {
+      promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${poke.name.toLowerCase()}`))
+    });
+    
+    const responses = await Promise.all(promises)
+
+    for(let i = 0; i < responses.length; i++) {
+      const res = responses[i];
+      let types = [];
+
+      if (res.ok) {
+        const data = await res.json();
+        types = data.types.map(type => type.type.name);
+      }
+
+      pokemon[i].types = types;
+    }
+
+    setTeam(pokemon)
     setTeamImport("");
   }
 

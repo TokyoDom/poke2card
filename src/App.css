@@ -1,72 +1,72 @@
-.bug {
+.type.bug {
   background-color: #AFC836;
 }
 
-.dark {
+.type.dark {
   background-color: #6E7587;
 }
 
-.dragon {
+.type.dragon {
   background-color: #0180C7;
 }
 
-.electric {
-  background-color: #0180C7;
+.type.electric {
+  background-color: #D9D325;
 }
 
-.fairy {
+.type.fairy {
   background-color: #F3A7E7;
 }
 
-.fighting {
+.type.fighting {
   background-color: #E74347;
 }
 
-.fire {
+.type.fire {
   background-color: #FBAE46;
 }
 
-.flying {
+.type.flying {
   background-color: #A6C2F2;
 }
 
-.ghost {
+.type.ghost {
   background-color: #7773D4;
 }
 
-.grass {
+.type.grass {
   background-color: #5AC178;
 }
 
-.ground {
+.type.ground {
   background-color: #D29463;
 }
 
-.ice {
+.type.ice {
   background-color: #8CDDD4;
 }
 
-.normal {
+.type.normal {
   background-color: #A3A49E;
 }
 
-.poison {
+.type.poison {
   background-color: #C261D4;
 }
 
-.psychic {
+.type.psychic {
   background-color: #FE9F92;
 }
 
-.rock {
+.type.rock {
   background-color: #D7CD90;
 }
 
-.steel {
+.type.steel {
   background-color: #58A6AA;
 }
 
-.water {
+.type.water {
   background-color: #6CBDE4;
 }
 
@@ -96,6 +96,7 @@ h2 {
 }
 
 .type {
+  background-color: black;
   color: white;
   padding: 2px 20px;
   border-radius: 10px;
@@ -160,6 +161,10 @@ h2 {
 
 .typing div:first-child {
   margin-right: 12px;
+}
+
+.typing input {
+  width: 100px;
 }
 
 .ev-plus {

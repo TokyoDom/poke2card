@@ -7,12 +7,15 @@ import PokemonCard from "./components/PokemonCard";
 function App() {
   const [teamImport, setTeamImport] = useState("");
   const [team, setTeam] = useState({});
+  const [waiting, setWaiting] = useState(false);
 
   const teamImportHandler = (e) => {
     setTeamImport(e.target.value);
   };
 
   const submitHandler = async (e) => {
+    setWaiting(true);
+
     //look into directly from pokepaste link
     const parsedTeam = Koffing.parse(teamImport);
     const pokemon = parsedTeam.teams[0].pokemon;
@@ -44,6 +47,7 @@ function App() {
 
     setTeam(parsedTeam);
     setTeamImport("");
+    setWaiting(false);
   };
 
   const addTyping = (i, types) => {
@@ -54,6 +58,7 @@ function App() {
   };
 
   const getImages = async () => {
+    setWaiting(true);
     if (Object.keys(team).length === 0) return;
 
     const body = {
@@ -80,6 +85,8 @@ function App() {
       link.click();
       document.body.removeChild(link);
     });
+
+    setWaiting(false);
   };
 
   return (
@@ -89,6 +96,7 @@ function App() {
         submitHandler={submitHandler}
         teamImport={teamImport}
         getImages={getImages}
+        waiting={waiting}
       />
       {team.teams && team.teams[0].pokemon.map((poke, i) => (
         <PokemonCard key={i} i={i} pokemon={poke} addTyping={addTyping} />

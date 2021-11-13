@@ -16,7 +16,9 @@ app.get("*", (req, res) => {
 app.post("/images", async (req, res) => {
   const { text, team } = req.body;
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox']
+  });
   const page = await browser.newPage();
   await page.goto(process.env.URL);
   await page.click('textarea');

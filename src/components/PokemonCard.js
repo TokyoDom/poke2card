@@ -23,18 +23,18 @@ function PokemonCard({ pokemon, i, addTyping }) {
       return (
         <>
           <input
-            id="type-1"
+            id={`poke-${i}-type-1`}
             value={t1}
             onChange={(e) => setT1(e.target.value)}
             placeholder="type 1"
           />
           <input
-            id="type-2"
+            id={`poke-${i}-type-2`}
             value={t2}
             onChange={(e) => setT2(e.target.value)}
             placeholder="type 2"
           />
-          <button className="confirm-typing" onClick={getTypingManually}>
+          <button id={`confirm-${i}`} onClick={getTypingManually}>
             Done
           </button>
         </>

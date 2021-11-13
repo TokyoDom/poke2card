@@ -59,32 +59,32 @@ function App() {
 
   const getImages = async () => {
     setWaiting(true);
-    if (Object.keys(team).length === 0) return;
+    if (Object.keys(team).length > 0) {
+      const body = {
+        text: team.toShowdown(),
+        team: team.teams[0].pokemon
+      };
 
-    const body = {
-      text: team.toShowdown(),
-      team: team.teams[0].pokemon
-    };
+      const response = await fetch("/images", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      });
 
-    const response = await fetch("/images", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    });
+      const data = await response.json();
+      const images = data.images;
 
-    const data = await response.json();
-    const images = data.images;
-
-    images.forEach((image, i) => {
-      const link = document.createElement("a");
-      link.href = `data:image/png;base64,${image}`;
-      link.download = team.teams[0].pokemon[i].name;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
+      images.forEach((image, i) => {
+        const link = document.createElement("a");
+        link.href = `data:image/png;base64,${image}`;
+        link.download = team.teams[0].pokemon[i].name;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    }
 
     setWaiting(false);
   };
